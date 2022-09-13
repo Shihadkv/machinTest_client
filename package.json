@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://sticky-notes-service.herokuapp.com/api",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -45,7 +46,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://sticky-notes-service.herokuapp.com/api",
   "devDependencies": {
     "autoprefixer": "^10.4.9",
     "postcss": "^8.4.16",

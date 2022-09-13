@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import randomColor from "randomcolor";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, Typography, Modal, TextField } from "@mui/material";
 
 const style = {
@@ -27,51 +27,41 @@ const DisplayNotes = (props) => {
     }
   };
 
- 
+  const Navigate = useNavigate();
 
-  const Navigate = useNavigate()
-
-//   const handleEdit = async (id) => {
-//     try {
-//       const { data } = await axios.post("/notes/editNotes", { Id: id });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [notes, setNotes] = useState([]);
   const [deleteNote, setDeleteNote] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [loading, setLoading] = useState(false);
 
-
- const editedData = async() =>{
-    try { 
-        console.log(title,content);
-        const {data} = await axios.post('/notes/editNotes',{title:title==='' ?edit.title:title,content:content ==='' ?edit.content:content,id:edit._id})
-        setOpen(false)
+  const editedData = async () => {
+    try {
+      console.log(title, content);
+      const { data } = await axios.post("/notes/editNotes", {
+        title: title === "" ? edit.title : title,
+        content: content === "" ? edit.content : content,
+        id: edit._id,
+      });
+      setOpen(false);
     } catch (error) {
-         console.log(error);
+      console.log(error);
     }
- }
- 
+  };
 
-
-  const handleClickOpen = (index) => { 
-    setLoading(true);
+  const handleClickOpen = (index) => {
     const result = notes[index];
     console.log(result);
     setEdit(result);
     setOpen(true);
   };
 
-
   const displayNotes = async () => {
     try {
-      let userData = JSON.parse(localStorage.getItem('user'))
-      const { data } = await axios.get('/notes/getNotes',{params:{userId:userData._id}});
+      let userData = JSON.parse(localStorage.getItem("user"));
+      const { data } = await axios.get("/notes/getNotes", {
+        params: { userId: userData._id },
+      });
       setDeleteNote(false);
       console.log(data);
       setNotes(data);
@@ -86,8 +76,8 @@ const DisplayNotes = (props) => {
 
   useEffect(() => {
     displayNotes();
-   Navigate('/')
-  }, [deleteNote,Navigate,open]);
+    Navigate("/");
+  }, [deleteNote, Navigate, open]);
 
   return (
     <React.Fragment>
@@ -139,7 +129,10 @@ const DisplayNotes = (props) => {
                       >
                         Delete
                       </Button>
-                      <Button variant="outlined" onClick={()=>handleClickOpen(index)}>
+                      <Button
+                        variant="outlined"
+                        onClick={() => handleClickOpen(index)}
+                      >
                         EDIT
                       </Button>
                       <Modal
@@ -152,9 +145,9 @@ const DisplayNotes = (props) => {
                         <Box sx={style}>
                           <TextField
                             sx={{ mt: 2, width: 320 }}
-                            name='title'
-                            placeholder='title'
-                            onChange={(e)=>setTitle(e.target.value)}
+                            name="title"
+                            placeholder="title"
+                            onChange={(e) => setTitle(e.target.value)}
                             defaultValue={edit.title}
                             label="Filled success"
                             variant="filled"
@@ -163,9 +156,9 @@ const DisplayNotes = (props) => {
                           />
                           <TextField
                             sx={{ mt: 2, width: 320 }}
-                            name='content'
-                            placeholder='Content'
-                            onChange={(e)=>setContent(e.target.value)}
+                            name="content"
+                            placeholder="Content"
+                            onChange={(e) => setContent(e.target.value)}
                             defaultValue={edit.content}
                             label="Filled success"
                             variant="filled"
@@ -174,9 +167,9 @@ const DisplayNotes = (props) => {
                           />
                           <Button
                             sx={{ marginTop: 5, marginLeft: 1 }}
-                            variant="contained" onClick={editedData}
+                            variant="contained"
+                            onClick={editedData}
                           >
-                           
                             submit
                           </Button>
                         </Box>
