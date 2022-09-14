@@ -6,12 +6,14 @@ const CreateNote = () => {
 
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             let userData = JSON.parse(localStorage.getItem('user'))
             const datas = { title, content, userData }
             const { data } = await axios.post('https://sticky-notes-service.herokuapp.com/api/notes/createNotes', datas)
+            window.location.reload()
         } catch (err) {
             console.log(err);
         }
