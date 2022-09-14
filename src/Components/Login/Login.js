@@ -23,7 +23,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       console.log(credentials,"ffffff");
-      const res = await axios.post("https://sticky-notes-service.herokuapp.com/api/auth/login", credentials);
+      const res = await axios.post("/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
       console.log(user, "user");

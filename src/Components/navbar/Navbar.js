@@ -19,7 +19,7 @@ const Navbar = () => {
     localStorage.clear();
     dispatch({ user: null });
 
-    navigate("/");
+    navigate("/login");
   };
 
   return (

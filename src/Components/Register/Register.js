@@ -68,7 +68,7 @@ const Register = () => {
     },
     validate,
     onSubmit: async (values) => {
-      await axios.post("https://sticky-notes-service.herokuapp.com/api/auth/register", values).then((response) => {
+      await axios.post("/auth/register", values).then((response) => {
         console.log(response,"its response");
         // handleOpen();
         console.log(response);

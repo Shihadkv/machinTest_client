@@ -20,7 +20,7 @@ const style = {
 const DisplayNotes = (props) => {
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.post("https://sticky-notes-service.herokuapp.com/api/notes/deleteNotes", { Id: id });
+      const { data } = await axios.post("/notes/deleteNotes", { Id: id });
       setDeleteNote(true);
     } catch (error) {
       console.log(error);
@@ -38,7 +38,7 @@ const DisplayNotes = (props) => {
   const editedData = async () => {
     try {
       console.log(title, content);
-      const { data } = await axios.post("https://sticky-notes-service.herokuapp.com/api/notes/editNotes", {
+      const { data } = await axios.post("/notes/editNotes", {
         title: title === "" ? edit.title : title,
         content: content === "" ? edit.content : content,
         id: edit._id,
@@ -59,7 +59,7 @@ const DisplayNotes = (props) => {
   const displayNotes = async () => {
     try {
       let userData = JSON.parse(localStorage.getItem("user"));
-      const { data } = await axios.get("https://sticky-notes-service.herokuapp.com/api/notes/getNotes", {
+      const { data } = await axios.get("/notes/getNotes", {
         params: { userId: userData._id },
       });
       setDeleteNote(false);
