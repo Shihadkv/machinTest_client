@@ -90,9 +90,10 @@ const DisplayNotes = (props) => {
                   <Box
                     sx={{
                       width: 300,
-                      height: 300,
+                      height: 200,
                       backgroundColor: randomColor(),
                       borderRadius: 3,
+                      marginBottom: 5
                     }}
                   >
                     <Typography
